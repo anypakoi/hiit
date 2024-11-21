@@ -1,126 +1,75 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput,} from 'react-native';
-import Slider from '@react-native-community/slider'
-import Countdown from '../components/Countdown';
-import Alarm from '../components/Alarm';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import Slider from '@react-native-community/slider';
+import AppNavigator from '../navigation/AppNavigator'
+import {SETTINGS} from '../components/config/settings'
 
-class Counter extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      totalTime: (props.workTime || 30),
-      pomodoro: true,
-      playAlarm: false,
-      cycle: 1,
-    };
-    this.interval = null;
-  }
+class AppMenu extends React.Component {
 
-  componentDidMount() {
-    this.interval = setInterval(this.increaseNum, 1000)
+  static navigationOptions = {
     
   }
 
-  componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
+  constructor(props) {
+    super(props)
+    this.state = {
+      start: false,
+      workTime: SETTINGS.workTime,
+      breakTime: SETTINGS.breakTime,
+      timeCycle: SETTINGS.timeCycle,
     }
   }
 
-  increaseNum = () => {
-    if (this.state.totalTime > 0) {
-      this.setState(prevState => ({
-        totalTime: prevState.totalTime - 1,
-        playAlarm: false
-      }))
-      if (this.state.totalTime === 3) {
-        this.setState({playAlarm: true})
-      }
-    } 
-    else {
-      this.setState(prevState => ({
-        
-        totalTime: this.state.pomodoro ? (this.state.cycle % 10 === 0 ? this.props.breakTime * this.props.timeCycle  : this.props.breakTime) : this.props.workTime * 60,
-        pomodoro: !prevState.pomodoro,
-        cycle: prevState.cycle + 1,
-      }))
-    }
-  };
+  onButtonPress = () => {
+    this.props.navigation.navigate('Counter', {
+      workTime: this.state.workTime,
+      breakTime: this.state.breakTime,
+      timeCycle: this.state.timeCycle
+    });
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Countdown totalTime={this.state.totalTime} />
-        <Alarm shouldPlay={this.state.playAlarm} />
+        <View style={styles.inputContainer}>
+          <Text>Tiempo de trabajo (minutos):</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={this.state.workTime}
+            onChangeText={(text) => this.setState({workTime: text})}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text>Tiempo de descanso (minutos):</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={this.state.breakTime}
+            onChangeText={(text) => this.setState({breakTime: text})}
+          />
+        </View>
+        <View style={styles.sliderContainer}>
+          <Text>Multiplicador de ciclo: {this.state.timeCycle}x</Text>
+          <Text>({parseInt(this.state.timeCycle) * parseInt(this.state.breakTime)} minutos de descanso)</Text>
+          <Slider
+            style={styles.slider}
+            minimumValue={1}
+            maximumValue={5}
+            step={1}
+            value={parseInt(this.state.timeCycle)}
+            onValueChange={(value) => this.setState({timeCycle: value.toString()})}
+          />
+        </View>
+        <Button title='start' onPress={this.onButtonPress} />
       </View>
     );
   }
 }
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      start: false,
-      workTime: '30',
-      breakTime: '30',
-      timeCycle: '3',
-    }
-  }
-
-  onButtonPress = () => {
-    this.setState(prevState => ({start: !prevState.start}))
-  };
-
   render() {
-    if (this.state.start) {
-      return (
-        <View style={styles.container}>
-          <Button title='stop' onPress={this.onButtonPress} />
-          <Counter 
-            workTime={parseInt(this.state.workTime)} 
-            breakTime={parseInt(this.state.breakTime)}
-            timeCycle={parseInt(this.state.timeCycle)} 
-          />
-        </View>
-      )
-    } else {
-      return (
-        <View style={styles.container}>
-          <View style={styles.inputContainer}>
-            <Text>Tiempo de trabajo (minutos):</Text>
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              value={this.state.workTime}
-              onChangeText={(text) => this.setState({workTime: text})}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text>Tiempo de descanso (minutos):</Text>
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              value={this.state.breakTime}
-              onChangeText={(text) => this.setState({breakTime: text})}
-            />
-          </View>
-          <View style={styles.sliderContainer}>
-            <Text>Multiplicador de ciclo: {this.state.timeCycle}x</Text>
-            <Text>({parseInt(this.state.timeCycle) * parseInt(this.state.breakTime)} minutos de descanso)</Text>
-            <Slider
-              style={styles.slider}
-              minimumValue={1}
-              maximumValue={5}
-              step={1}
-              value={parseInt(this.state.timeCycle)}
-              onValueChange={(value) => this.setState({timeCycle: value.toString()})}
-            />
-          </View>
-          <Button title='start' onPress={this.onButtonPress} />
-        </View>
-      )
-    }
+    return <AppNavigator />
   }
 }
 
