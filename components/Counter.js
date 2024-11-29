@@ -31,7 +31,7 @@ class Counter extends React.Component {
         totalTime: prevState.totalTime - 1,
         playAlarm: false
       }))
-      if (this.state.totalTime === 3) {
+      if (this.state.totalTime <= 3) {
         this.setState({playAlarm: true})
       }
     } 
@@ -39,9 +39,9 @@ class Counter extends React.Component {
       this.setState(prevState => ({
         totalTime: this.state.pomodoro 
           ? (this.state.cycle % 10 === 0 
-            ? this.props.breakTime * this.props.timeCycle * 60
-            : this.props.breakTime * 60) 
-          : this.props.workTime * 60,
+            ? this.props.breakTime * this.props.timeCycle
+            : this.props.breakTime) 
+          : this.props.workTime,
         pomodoro: !prevState.pomodoro,
         cycle: prevState.cycle + 1,
       }))

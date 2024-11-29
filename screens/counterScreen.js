@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import Counter from '../components/counter'
+import Counter from '../components/Counter'
 
 export default function counterScreen({ navigation, route }) {
   const { workTime, breakTime, timeCycle } = route.params;
