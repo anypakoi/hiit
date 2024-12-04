@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import Slider from '@react-native-community/slider';
-import Settings from '../config/settings';
+import {Settings} from '../config/settings';
 
 class AppMenu extends React.Component {
 

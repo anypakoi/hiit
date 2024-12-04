@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import SoundList from '../components/Setting';
 
 export default function Settings() {
   return (
     <View style={styles.container}>
-      <Text>Configuración</Text>
+      <SoundList/>
     </View>
   );
 };
