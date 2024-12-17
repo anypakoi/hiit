@@ -1,11 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo-av';
-import { SOUND_MAP } from '../config/settings';
+import { Settings, SOUND_MAP } from '../config/config';
+import { useDispatch } from 'react-redux';
+import { updateConfig } from '../redux/slices/configSlice';
 
 const SoundList = () => {
   const [currentSound, setCurrentSound] = useState(null);
   const soundRef = useRef(null);
+  const dispatch = useDispatch();
 
   const stopCurrentSound = async () => {
     if (soundRef.current) {
@@ -30,6 +33,12 @@ const SoundList = () => {
       const { sound } = await Audio.Sound.createAsync(soundFile);
       soundRef.current = sound;
       setCurrentSound(key);
+      
+      dispatch(updateConfig({ 
+        key: 'soundAlarm', 
+        value: key 
+      }));
+
       await sound.playAsync();
     } catch (error) {
       console.error('Error playing sound:', error);

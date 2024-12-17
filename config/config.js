@@ -3,7 +3,6 @@ const Settings = {
     breakTime: 30,
     timeCycle: 3,
     restTime: 10,
-    soundAlarm: "alarm clock",
 }
 
 const SOUND_MAP = {
