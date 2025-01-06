@@ -18,7 +18,6 @@ import configReducer from './slices/configSlice';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['config'] // Solo persistir el slice de configuración
 };
 
 // Reducer persistido

@@ -1,14 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo-av';
-import { Settings, SOUND_MAP } from '../config/config';
-import { useDispatch } from 'react-redux';
+import { SOUND_MAP } from '../config/config';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateConfig } from '../redux/slices/configSlice';
 
 const SoundList = () => {
-  const [currentSound, setCurrentSound] = useState(null);
   const soundRef = useRef(null);
   const dispatch = useDispatch();
+
+  // Obtener el sonido actual desde Redux
+  const selectedSound = useSelector((state) => state.config.soundAlarm);
 
   const stopCurrentSound = async () => {
     if (soundRef.current) {
@@ -20,7 +22,7 @@ const SoundList = () => {
 
   const playSound = async (key) => {
     try {
-      // Stop any currently playing sound
+      // Detener el sonido actual
       await stopCurrentSound();
 
       const soundFile = SOUND_MAP[key];
@@ -29,11 +31,11 @@ const SoundList = () => {
         return;
       }
 
-      // Load and play new sound
+      // Cargar y reproducir el nuevo sonido
       const { sound } = await Audio.Sound.createAsync(soundFile);
       soundRef.current = sound;
-      setCurrentSound(key);
-      
+
+      // Actualizar el estado en Redux
       dispatch(updateConfig({ 
         key: 'soundAlarm', 
         value: key 
@@ -56,7 +58,7 @@ const SoundList = () => {
             style={{ 
               padding: 10, 
               margin: 5, 
-              backgroundColor: currentSound === key ? 'lightblue' : 'lightgray' 
+              backgroundColor: selectedSound === key ? 'lightblue' : 'lightgray' 
             }}
           >
             <Text>{key}</Text>
