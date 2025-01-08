@@ -13,6 +13,7 @@ class AppMenu extends React.Component {
         workTime: Settings.workTime,
         breakTime: Settings.breakTime,
         timeCycle: Settings.timeCycle,
+        restTime: Settings.restTime
       }
     }
   
@@ -20,7 +21,8 @@ class AppMenu extends React.Component {
       this.props.navigation.navigate('Counter', {
         workTime: this.state.workTime,
         breakTime: this.state.breakTime,
-        timeCycle: this.state.timeCycle
+        timeCycle: this.state.timeCycle,
+        restTime: this.state.restTime
       });
     }
   
