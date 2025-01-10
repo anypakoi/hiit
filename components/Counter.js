@@ -7,7 +7,7 @@ class Counter extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalTime: props.workTime * 1,
+      totalTime: props.workTime * props.unitTime,
       pomodoro: true,
       playAlarm: false,
       cycle: 1,

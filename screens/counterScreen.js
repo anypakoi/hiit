@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import Counter from '../components/Counter'
 
 export default function counterScreen({ navigation, route }) {
-  const { workTime, breakTime, timeCycle, restTime } = route.params;
+  const { workTime, breakTime, timeCycle, restTime, unitTime } = route.params;
 
   return (
     <View style={styles.container}>
@@ -15,7 +15,8 @@ export default function counterScreen({ navigation, route }) {
             workTime={parseInt(workTime)} 
             breakTime={parseInt(breakTime)}
             timeCycle={parseInt(timeCycle)}
-            restTime={parseInt(restTime)} 
+            restTime={parseInt(restTime)}
+            unitTime={parseInt(unitTime)}
           />
         </View>
   );

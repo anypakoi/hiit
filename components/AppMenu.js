@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import Slider from '@react-native-community/slider';
-import {Settings} from '../config/config';
 
 class AppMenu extends React.Component {
 
@@ -10,10 +9,10 @@ class AppMenu extends React.Component {
       super(props)
       this.state = {
         start: false,
-        workTime: Settings.workTime,
-        breakTime: Settings.breakTime,
-        timeCycle: Settings.timeCycle,
-        restTime: Settings.restTime
+        workTime: props.workTime,
+        breakTime: props.breakTime,
+        timeCycle: props.timeCycle,
+        restTime: props.restTime,
       }
     }
   
