@@ -13,6 +13,7 @@ class AppMenu extends React.Component {
         breakTime: props.breakTime,
         timeCycle: props.timeCycle,
         restTime: props.restTime,
+        unitTime: props.unitTime,
       }
     }
   
@@ -21,7 +22,8 @@ class AppMenu extends React.Component {
         workTime: this.state.workTime,
         breakTime: this.state.breakTime,
         timeCycle: this.state.timeCycle,
-        restTime: this.state.restTime
+        restTime: this.state.restTime,
+        unitTime: this.state.unitTime,
       });
     }
   

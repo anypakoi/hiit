@@ -4,7 +4,7 @@ import AppMenu from '../components/AppMenu';
 import Counter from '../screens/counterScreen';
 import Settings from '../screens/settingScreen';
 import { Button } from 'react-native';
-import { ConfigHiit } from '../config/config';
+import { CONFIGHIIT, CONFIGPOMODORO } from '../config/config';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const AppNavigator = () => {
           ),
         })}
       >
-        {(props) => <AppMenu {...props} {...ConfigHiit} />}
+        {(props) => <AppMenu {...props} {...CONFIGHIIT} />}
       </Stack.Screen>
       <Stack.Screen name="Counter" component={Counter} />
       <Stack.Screen name="Setting" component={Settings} />
