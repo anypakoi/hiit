@@ -5,15 +5,16 @@ import Slider from '@react-native-community/slider';
 class AppMenu extends React.Component {
 
   
-    constructor(props) {
+    constructor({props, route}) {
+      const { workTime, breakTime, timeCycle, restTime, unitTime } = route.params;
       super(props)
       this.state = {
         start: false,
-        workTime: props.workTime,
-        breakTime: props.breakTime,
-        timeCycle: props.timeCycle,
-        restTime: props.restTime,
-        unitTime: props.unitTime,
+        workTime: workTime,
+        breakTime: breakTime,
+        timeCycle: timeCycle,
+        restTime: restTime,
+        unitTime: unitTime,
       }
     }
   

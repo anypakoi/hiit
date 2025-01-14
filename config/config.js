@@ -16,7 +16,7 @@ const CONFIGHIIT = {
   };
 
 const CONFIGPOMODORO = {
-    worktime: 25,
+    workTime: 25,
     breakTime: 10,
     timeCycle: 3,
     restCycle: 4,
