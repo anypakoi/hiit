@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AppMenu from '../components/AppMenu';
+import AppMenu from '../components/AppMenu/AppMenu';
 import Counter from '../screens/counterScreen';
 import Settings from '../screens/settingScreen';
 import { Button } from 'react-native';
