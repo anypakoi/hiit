@@ -21,7 +21,7 @@ const Countdown = (props) => {
     displayTime = `${formattedMinutes}:${formattedSeconds}`;
   }
 
-  return <Text>{displayTime}</Text>
+  return <Text testID="countDown">{displayTime}</Text>
 };
 
 export default Countdown;

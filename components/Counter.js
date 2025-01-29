@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Countdown from './Countdown';
-import Alarm from './Alarm';
+import Countdown from './Countdown/Countdown';
+import Alarm from './Alarm/Alarm';
 
 class Counter extends React.Component {
   constructor(props) {

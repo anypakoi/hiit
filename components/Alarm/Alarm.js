@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Audio } from 'expo-av';
-import {SOUND_MAP} from '../config/config';
+import {SOUND_MAP} from '../../config/config';
 import {useSelector} from 'react-redux';
 
 
