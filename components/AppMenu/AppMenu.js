@@ -53,6 +53,7 @@ class AppMenu extends React.Component {
             <Text>Multiplicador de ciclo: {this.state.timeCycle}x</Text>
             <Text>({parseInt(this.state.timeCycle) * parseInt(this.state.breakTime)} segundos de descanso)</Text>
             <Slider
+              testID='timeCycleSlider'
               style={styles.slider}
               minimumValue={1}
               maximumValue={5}
