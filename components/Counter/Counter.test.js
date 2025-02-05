@@ -3,49 +3,51 @@ import { render, act } from '@testing-library/react-native';
 import Counter from './Counter';
 import Countdown from '../Countdown/Countdown';
 import Alarm from '../Alarm/Alarm';
-import ReactDOM from 'react-dom/client';
 
 // Mock de los componentes Countdown y Alarm
 jest.mock('../Countdown/Countdown', () => jest.fn(() => null));
 jest.mock('../Alarm/Alarm', () => jest.fn(() => null));
+const clearInterval = jest.fn();
 
 describe('Counter Component', () => {
     it('initializes with correct initial state', () => {
         jest.useFakeTimers();
 
-        const workTime = 25;
-        const unitTime = 60;
-        const restTime = 4;
-        const breakTime = 5;
-        const timeCycle = 1;
+        const clearIntervalMock = jest.spyOn(global, 'clearInterval');
 
+        props = {
+        workTime : 25,
+        unitTime : 60,
+        restTime : 4,
+        breakTime : 5,
+        timeCycle : 1,
+        }
+
+        const {unmount} = render(<Counter {...props}/>);
+        
         act(() => {
-            render(
-            <Counter
-            workTime={workTime}
-            unitTime={unitTime}
-            restTime={restTime}
-            breakTime={breakTime}
-            timeCycle={timeCycle}
-            />);
-        }) 
-
-        jest.advanceTimersByTime(((workTime*unitTime)-2)*1000);
-
+            jest.advanceTimersByTime((props.workTime * props.unitTime)*1000);
+        });
 
         expect(Countdown).toHaveBeenCalledWith(
             expect.objectContaining({
-                totalTime: (workTime * unitTime),
+                totalTime: 0,
             }),
             expect.anything()
         );
 
-        expect(Alarm).toHaveBeenCalledWith(
+        expect(Alarm).toHaveBeenLastCalledWith(
             expect.objectContaining({
-                shouldPlay: false,
+                shouldPlay: true,
             }),
             expect.anything()
         );
+
+        unmount()
+
+        expect(clearIntervalMock).toHaveBeenCalled();
+
+        clearIntervalMock.mockRestore();
 
         jest.useRealTimers();
     });

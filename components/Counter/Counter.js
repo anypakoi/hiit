@@ -29,11 +29,8 @@ class Counter extends React.Component {
     if (this.state.totalTime > 0) {
       this.setState(prevState => ({
         totalTime: prevState.totalTime - 1,
-        playAlarm: false
+        playAlarm: prevState.totalTime <= 3
       }))
-      if (this.state.totalTime <= 3) {
-        this.setState({playAlarm: true})
-      }
     } 
     else {
       this.setState(prevState => ({
