@@ -13,6 +13,10 @@ const Alarm = ({ shouldPlay }) => {
       // Use static require with a pre-defined mapping
       const soundFile = SOUND_MAP[soundAlarm];
       
+      if (!soundFile) {
+        console.error('Sound file not found');
+        return;
+      }
 
       const { sound } = await Audio.Sound.createAsync(soundFile);
       setSound(sound);

@@ -34,6 +34,7 @@ class AppMenu extends React.Component {
           <View style={styles.inputContainer}>
             <Text>Tiempo de trabajo (segundos):</Text>
             <TextInput
+              testID='workTime'
               style={styles.input}
               keyboardType="numeric"
               value={this.state.workTime}
@@ -43,6 +44,7 @@ class AppMenu extends React.Component {
           <View style={styles.inputContainer}>
             <Text>Tiempo de descanso (segundos):</Text>
             <TextInput
+              testID='breakTime'
               style={styles.input}
               keyboardType="numeric"
               value={this.state.breakTime}
@@ -62,7 +64,7 @@ class AppMenu extends React.Component {
               onValueChange={(value) => this.setState({timeCycle: value.toString()})}
             />
           </View>
-          <Button title='start' onPress={this.onButtonPress} />
+          <Button testID='buttonInit' title='start' onPress={this.onButtonPress} />
         </View>
       );
     }
