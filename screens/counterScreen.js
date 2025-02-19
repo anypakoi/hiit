@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import Counter from '../components/Counter/Counter'
 
-export default function counterScreen({ navigation, route }) {
+export default function CounterScreen({ navigation, route }) {
   const { workTime, breakTime, timeCycle, restTime, unitTime } = route.params;
 
   return (

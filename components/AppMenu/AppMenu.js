@@ -5,9 +5,9 @@ import Slider from '@react-native-community/slider';
 class AppMenu extends React.Component {
 
   
-    constructor({props, route}) {
-      const { workTime, breakTime, timeCycle, restTime, unitTime } = route.params;
+    constructor(props) {
       super(props)
+      const { workTime, breakTime, timeCycle, restTime, unitTime } = props.route.params;
       this.state = {
         start: false,
         workTime: workTime,
@@ -37,7 +37,7 @@ class AppMenu extends React.Component {
               testID='workTime'
               style={styles.input}
               keyboardType="numeric"
-              value={this.state.workTime}
+              value={this.state.workTime.toString()}
               onChangeText={(text) => this.setState({workTime: text})}
             />
           </View>
@@ -47,7 +47,7 @@ class AppMenu extends React.Component {
               testID='breakTime'
               style={styles.input}
               keyboardType="numeric"
-              value={this.state.breakTime}
+              value={this.state.breakTime.toString()}
               onChangeText={(text) => this.setState({breakTime: text})}
             />
           </View>

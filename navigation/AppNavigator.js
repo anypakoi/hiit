@@ -6,6 +6,8 @@ import Counter from '../screens/counterScreen';
 import Settings from '../screens/settingScreen';
 import { Button } from 'react-native';
 import { CONFIGHIIT, CONFIGPOMODORO } from '../config/config';
+import { Ionicons } from '@expo/vector-icons';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,19 +56,38 @@ const PomodoroStack = () => (
 
 const AppNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          return <Ionicons name="timer-outline" size={size} color={color} />;
+        }
+      }}
+    >
       <Tab.Screen 
         name="HIIT" 
         component={HIITStack}
         options={{
-          headerShown: false
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons 
+              name={focused ? 'timer' : 'timer-outline'} 
+              size={size} 
+              color={color} 
+            />
+          ),
         }}
       />
       <Tab.Screen 
         name="Pomodoro" 
         component={PomodoroStack}
         options={{
-          headerShown: false
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons 
+              name={focused ? 'hourglass' : 'hourglass-outline'} 
+              size={size} 
+              color={color} 
+            />
+          ),
         }}
       />
     </Tab.Navigator>
