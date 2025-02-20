@@ -9,7 +9,7 @@ export default function CounterScreen({ navigation, route }) {
     <View style={styles.container}>
           <Button 
             title='stop' 
-            onPress={() => navigation.navigate('Menu')} 
+            onPress={() => navigation.goBack()} 
           />
           <Counter 
             workTime={parseInt(workTime)} 

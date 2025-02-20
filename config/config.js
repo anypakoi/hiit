@@ -13,6 +13,7 @@ const CONFIGHIIT = {
     timeCycle: 3,
     restCycle: 10,
     unitTime: 1, // un segundo
+    unit: 'segundos'
   };
 
 const CONFIGPOMODORO = {
@@ -21,6 +22,7 @@ const CONFIGPOMODORO = {
     timeCycle: 3,
     restCycle: 4,
     unitTime: 60, // un minuto
+    unit: 'minutos'
 };
 
 export {SOUND_MAP, CONFIGHIIT, CONFIGPOMODORO}

@@ -7,7 +7,7 @@ class AppMenu extends React.Component {
   
     constructor(props) {
       super(props)
-      const { workTime, breakTime, timeCycle, restTime, unitTime } = props.route.params;
+      const { workTime, breakTime, timeCycle, restTime, unitTime, unit } = props.route.params;
       this.state = {
         start: false,
         workTime: workTime,
@@ -15,6 +15,7 @@ class AppMenu extends React.Component {
         timeCycle: timeCycle,
         restTime: restTime,
         unitTime: unitTime,
+        unit: unit
       }
     }
   
@@ -53,7 +54,7 @@ class AppMenu extends React.Component {
           </View>
           <View style={styles.sliderContainer}>
             <Text>Multiplicador de ciclo: {this.state.timeCycle}x</Text>
-            <Text>({parseInt(this.state.timeCycle) * parseInt(this.state.breakTime)} segundos de descanso)</Text>
+            <Text>({parseInt(this.state.timeCycle) * parseInt(this.state.breakTime)} {this.state.unit} de descanso)</Text>
             <Slider
               testID='timeCycleSlider'
               style={styles.slider}
