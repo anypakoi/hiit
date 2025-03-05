@@ -36,19 +36,20 @@ class Counter extends React.Component {
       this.setState(prevState => ({
         totalTime: this.state.pomodoro 
           ? (this.state.cycle % this.props.restTime === 0 
-            ? this.props.breakTime * this.props.timeCycle
-            : this.props.breakTime) 
-          : this.props.workTime,
+            ? this.props.breakTime * this.props.timeCycle * this.props.unitTime
+            : this.props.breakTime * this.props.unitTime) 
+          : this.props.workTime * this.props.unitTime,
         pomodoro: !prevState.pomodoro,
         cycle: this.state.pomodoro ? (prevState.cycle + 1) : prevState.cycle
       }))
     }
   };
 
+
   render() {
     return (
       <View testID="Counter" style={styles.container}>
-        <Countdown totalTime={this.state.totalTime} />
+        <Countdown testID="countDown" totalTime={this.state.totalTime} />
         <Alarm shouldPlay={this.state.playAlarm} />
       </View>
     );
